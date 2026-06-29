@@ -1,16 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
 /* ── TOKENS ─────────────────────────────────────────── */
 :root {
-  --bg:        #0A0A0A;
-  --bg-dark:   #050505;
+  --bg:        #0D0D0D;
+  --bg-dark:   #080808;
   --surface:   #141414;
-  --border:    #222222;
-  --gold:      #C4A882;
-  --gold-dim:  #8A7560;
-  --text:      #F0EDE8;
+  --border:    #2A2A2A;
+  --gold:      #FFFFFF;
+  --gold-dim:  #666666;
+  --text:      #FFFFFF;
   --text-muted:#888888;
-  --text-dim:  #555555;
+  --text-dim:  #444444;
 
-  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-display: 'Syne', system-ui, sans-serif;
   --font-body:    'Inter', system-ui, sans-serif;
 
   --max-w: 1100px;
@@ -42,7 +44,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: space-between;
   padding: 24px 48px;
-  background: rgba(10,10,10,0.85);
+  background: rgba(13,13,13,0.88);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
   transition: border-color 0.3s;
@@ -52,9 +54,10 @@ a { color: inherit; text-decoration: none; }
 
 .nav-logo {
   font-family: var(--font-display);
-  font-size: 20px;
-  color: var(--gold);
-  letter-spacing: 0.05em;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.02em;
 }
 
 .nav-right {
@@ -70,9 +73,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .nav-links a {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
   transition: color 0.2s;
@@ -105,7 +108,7 @@ a { color: inherit; text-decoration: none; }
   transition: color 0.2s;
 }
 
-.lang-btn.active { color: var(--gold); }
+.lang-btn.active { color: var(--text); }
 .lang-btn:not(.active):hover { color: var(--text-muted); }
 
 .lang-toggle-overlay {
@@ -119,14 +122,14 @@ a { color: inherit; text-decoration: none; }
 .lang-toggle-overlay .lang-sep { font-size: 14px; }
 
 .nav-links .nav-resume {
-  color: var(--gold);
-  border: 1px solid rgba(196,168,130,0.25);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.18);
   padding: 5px 14px;
   margin-left: 8px;
   transition: color 0.2s, border-color 0.2s;
 }
 
-.nav-links .nav-resume:hover { color: var(--gold); border-color: var(--gold); }
+.nav-links .nav-resume:hover { color: var(--text); border-color: var(--text); }
 
 /* ── HAMBURGER ───────────────────────────────────────── */
 .nav-hamburger {
@@ -194,7 +197,7 @@ a { color: inherit; text-decoration: none; }
 .nav-overlay-links a {
   font-family: var(--font-display);
   font-size: clamp(40px, 10vw, 64px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text-muted);
   display: block;
   padding: 8px 0;
@@ -218,7 +221,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin-top: 20px;
 }
 
@@ -234,11 +237,11 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-eyebrow {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
   margin-bottom: 28px;
   opacity: 0;
   animation: fadeUp 0.8s 0.2s forwards;
@@ -247,9 +250,9 @@ a { color: inherit; text-decoration: none; }
 .hero-name {
   font-family: var(--font-display);
   font-size: clamp(64px, 10vw, 120px);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 0.95;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   margin-bottom: 36px;
   opacity: 0;
   animation: fadeUp 0.8s 0.4s forwards;
@@ -257,15 +260,15 @@ a { color: inherit; text-decoration: none; }
 
 .hero-name em {
   font-style: italic;
-  color: var(--gold);
+  color: var(--text);
 }
 
 .hero-sub {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 300;
   color: var(--text-muted);
   max-width: 520px;
-  line-height: 1.7;
+  line-height: 1.75;
   margin-bottom: 48px;
   opacity: 0;
   animation: fadeUp 0.8s 0.6s forwards;
@@ -281,13 +284,14 @@ a { color: inherit; text-decoration: none; }
 .btn-primary {
   display: inline-block;
   padding: 14px 32px;
-  background: var(--gold);
-  color: var(--bg);
-  font-size: 13px;
+  background: #FFFFFF;
+  color: #0D0D0D;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: opacity 0.2s;
+  border-radius: 0;
 }
 
 .btn-primary:hover { opacity: 0.85; }
@@ -297,14 +301,15 @@ a { color: inherit; text-decoration: none; }
   padding: 14px 32px;
   border: 1px solid var(--border);
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: border-color 0.2s, color 0.2s;
+  border-radius: 0;
 }
 
-.btn-ghost:hover { border-color: var(--gold-dim); color: var(--text); }
+.btn-ghost:hover { border-color: var(--text); color: var(--text); }
 
 .hero-stat-row {
   display: flex;
@@ -325,16 +330,16 @@ a { color: inherit; text-decoration: none; }
 .stat-number {
   font-family: var(--font-display);
   font-size: 42px;
-  font-weight: 400;
-  color: var(--gold);
+  font-weight: 700;
+  color: var(--text);
   line-height: 1;
 }
 
 .stat-label {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 400;
   color: var(--text-dim);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -357,15 +362,15 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
   margin-bottom: 24px;
 }
 
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(36px, 5vw, 56px);
-  font-weight: 400;
-  line-height: 1.1;
+  font-weight: 700;
+  line-height: 1.05;
   margin-bottom: 64px;
   color: var(--text);
 }
@@ -381,15 +386,16 @@ a { color: inherit; text-decoration: none; }
 .about-text h2 {
   font-family: var(--font-display);
   font-size: clamp(28px, 4vw, 42px);
-  font-weight: 400;
-  line-height: 1.15;
+  font-weight: 700;
+  line-height: 1.1;
   margin-bottom: 28px;
 }
 
 .about-text p {
   color: var(--text-muted);
   font-size: 15px;
-  line-height: 1.8;
+  font-weight: 300;
+  line-height: 1.85;
   margin-bottom: 20px;
 }
 
@@ -404,8 +410,8 @@ a { color: inherit; text-decoration: none; }
   width: 78%;
   margin: 0 auto 32px;
   filter:
-    drop-shadow(0 0 10px rgba(196, 168, 130, 0.35))
-    drop-shadow(0 4px 28px rgba(196, 168, 130, 0.15));
+    drop-shadow(0 0 10px rgba(255,255,255,0.06))
+    drop-shadow(0 4px 28px rgba(255,255,255,0.03));
 }
 
 .about-photo-wrapper {
@@ -418,7 +424,7 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   height: auto;
   display: block;
-  filter: grayscale(15%) contrast(1.05);
+  filter: grayscale(20%) contrast(1.05);
 }
 
 .detail-item {
@@ -436,7 +442,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--gold-dim);
+  color: var(--text-dim);
 }
 
 .detail-value {
@@ -472,7 +478,8 @@ a { color: inherit; text-decoration: none; }
 .timeline-year {
   font-family: var(--font-display);
   font-size: 28px;
-  color: var(--gold);
+  font-weight: 700;
+  color: var(--text);
   line-height: 1;
 }
 
@@ -481,7 +488,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--gold-dim);
+  color: var(--text-muted);
 }
 
 .timeline-line {
@@ -498,8 +505,8 @@ a { color: inherit; text-decoration: none; }
   transform: translateX(-50%);
   width: 7px;
   height: 7px;
-  border-radius: 50%;
-  background: var(--gold);
+  border-radius: 0;
+  background: var(--text);
   border: 2px solid var(--bg-dark);
 }
 
@@ -532,7 +539,7 @@ a { color: inherit; text-decoration: none; }
 
 .timeline-company {
   font-size: 14px;
-  color: var(--gold);
+  color: var(--text-muted);
   font-weight: 400;
 }
 
@@ -570,12 +577,13 @@ a { color: inherit; text-decoration: none; }
   padding: 5px 12px;
   white-space: nowrap;
   flex-shrink: 0;
+  border-radius: 0;
 }
 
 .timeline-desc {
   font-size: 14px;
   color: var(--text-muted);
-  line-height: 1.8;
+  line-height: 1.85;
   margin-bottom: 20px;
   max-width: 620px;
 }
@@ -590,17 +598,19 @@ a { color: inherit; text-decoration: none; }
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: var(--gold-dim);
-  background: rgba(196,168,130,0.08);
-  border: 1px solid rgba(196,168,130,0.15);
+  color: var(--text-dim);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
   padding: 4px 12px;
+  border-radius: 0;
 }
 
 /* ── SKILLS ─────────────────────────────────────────── */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
+  gap: 1px;
+  background: var(--border);
 }
 
 .skill-card {
@@ -609,14 +619,14 @@ a { color: inherit; text-decoration: none; }
   transition: background 0.2s;
 }
 
-.skill-card:hover { background: #1a1a1a; }
+.skill-card:hover { background: #1A1A1A; }
 
 .skill-category {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
   margin-bottom: 20px;
 }
 
@@ -665,19 +675,20 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-muted);
   cursor: pointer;
   transition: color 0.2s, background 0.2s, border-color 0.2s;
+  border-radius: 0;
 }
 
 .resume-tab + .resume-tab { border-left: none; }
 
 .resume-tab.active {
-  background: var(--gold);
-  color: var(--bg);
-  border-color: var(--gold);
+  background: #FFFFFF;
+  color: #0D0D0D;
+  border-color: #FFFFFF;
 }
 
 .resume-tab:not(.active):hover {
   color: var(--text);
-  border-color: var(--gold-dim);
+  border-color: var(--text);
 }
 
 /* ── RESUME VIEWER ───────────────────────────────────── */
@@ -706,6 +717,7 @@ a { color: inherit; text-decoration: none; }
 
 .contact-sub {
   font-size: 16px;
+  font-weight: 300;
   color: var(--text-muted);
   line-height: 1.8;
   margin-bottom: 56px;
@@ -736,7 +748,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--gold-dim);
+  color: var(--text-dim);
   width: 80px;
   flex-shrink: 0;
 }
