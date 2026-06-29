@@ -787,6 +787,35 @@ html[lang="es"] .lang-en { display: none; }
   letter-spacing: 0.05em;
 }
 
+/* ── OCEAN ───────────────────────────────────────────── */
+.ocean-divider {
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg);
+}
+
+.ocean-wave-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200%;
+  height: 100%;
+  will-change: transform;
+}
+
+.ocean-ripple {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(78, 168, 208, 0.65);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9998;
+}
+
 /* ── REVEAL ANIMATION (GSAP maneja opacity/transform) ── */
 .reveal { opacity: 0; }
 

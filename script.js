@@ -166,3 +166,41 @@ function closeMenu() { overlay.classList.remove('open'); document.body.style.ove
 hamburger.addEventListener('click', openMenu);
 overlayClose.addEventListener('click', closeMenu);
 overlay.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+// ── OCEAN WAVE (divisor animado) ──────────────────────────────────────────────
+(function () {
+  const container = document.querySelector('.ocean-divider');
+  if (!container) return;
+  const svg = container.querySelector('.ocean-wave-svg');
+
+  function startWave() {
+    const w = container.offsetWidth;
+    gsap.killTweensOf(svg);
+    gsap.fromTo(svg, { x: 0 }, { x: -w, duration: 10, ease: 'none', repeat: -1 });
+  }
+
+  startWave();
+  window.addEventListener('resize', startWave);
+})();
+
+// ── OCEAN RIPPLES (click / tap) ───────────────────────────────────────────────
+document.addEventListener('pointerdown', (e) => {
+  [0, 1, 2].forEach(i => {
+    const ring = document.createElement('div');
+    ring.className = 'ocean-ripple';
+    ring.style.left = e.clientX + 'px';
+    ring.style.top  = e.clientY + 'px';
+    document.body.appendChild(ring);
+    gsap.fromTo(ring,
+      { scale: 0, opacity: 0.8 - i * 0.2 },
+      {
+        scale: 3 + i * 2,
+        opacity: 0,
+        duration: 1.0 + i * 0.28,
+        delay: i * 0.13,
+        ease: 'power2.out',
+        onComplete: () => ring.remove(),
+      }
+    );
+  });
+});
