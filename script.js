@@ -155,6 +155,70 @@ if (waveSvg) {
   window.addEventListener('resize', startWave);
 }
 
+// ── HERO WAVES (canvas) ───────────────────────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('hero-waves');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width  = canvas.offsetWidth  * dpr;
+    canvas.height = canvas.offsetHeight * dpr;
+    ctx.scale(dpr, dpr);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // Capas: [fracción_y, amplitud, frecuencia, fase, velocidad, opacidad, grosor, blur]
+  // De fondo (borrosas) → primer plano (nítidas)
+  const layers = [
+    [0.40, 60, 0.0032, 0.0,  0.16, 0.055, 2.0, 6],
+    [0.60, 50, 0.0038, 1.5,  0.13, 0.045, 2.0, 7],
+    [0.45, 38, 0.0052, 2.8,  0.22, 0.08,  1.2, 3],
+    [0.55, 30, 0.0058, 4.1,  0.20, 0.07,  1.2, 3.5],
+    [0.50, 24, 0.0072, 0.9,  0.28, 0.10,  1.0, 1.5],
+    [0.47, 18, 0.0088, 3.3,  0.36, 0.14,  0.8, 0.5],
+    [0.53, 15, 0.0096, 5.7,  0.38, 0.12,  0.8, 0.5],
+    [0.50, 11, 0.0118, 2.1,  0.46, 0.18,  0.6, 0],
+    [0.48,  8, 0.0140, 4.6,  0.52, 0.15,  0.5, 0],
+  ];
+
+  function waveY(x, t, amp, freq, phase, speed) {
+    return amp * Math.sin(x * freq + t * speed + phase)
+         + amp * 0.28 * Math.sin(x * freq * 2.3 + t * speed * 1.4 + phase)
+         + amp * 0.10 * Math.sin(x * freq * 4.1 + t * speed * 0.7 + phase);
+  }
+
+  let t = 0;
+  function draw() {
+    const W = canvas.offsetWidth;
+    const H = canvas.offsetHeight;
+    ctx.clearRect(0, 0, W, H);
+
+    layers.forEach(([yFrac, amp, freq, phase, speed, opacity, lw, blur]) => {
+      ctx.save();
+      ctx.filter = blur > 0 ? `blur(${blur}px)` : 'none';
+      ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
+      ctx.lineWidth = lw;
+      ctx.beginPath();
+      const cy = H * yFrac;
+      for (let x = 0; x <= W; x += 1.5) {
+        const y = cy + waveY(x, t, amp, freq, phase, speed);
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.restore();
+    });
+
+    t += 0.010;
+    if (!document.hidden) requestAnimationFrame(draw);
+    else setTimeout(() => requestAnimationFrame(draw), 500);
+  }
+
+  requestAnimationFrame(draw);
+})();
+
 // ── OCEAN RIPPLES ─────────────────────────────────────────────────────────────
 document.addEventListener('pointerdown', (e) => {
   [0, 1, 2].forEach(i => {
