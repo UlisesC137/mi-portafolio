@@ -434,8 +434,8 @@ html[lang="es"] .lang-en { display: none; }
 }
 
 @keyframes photo-frame-glow {
-  0%, 100% { filter: drop-shadow(0 0 5px rgba(210,210,220,0.3)) drop-shadow(0 0 2px rgba(255,255,255,0.15)); }
-  50%       { filter: drop-shadow(0 0 20px rgba(210,210,220,0.85)) drop-shadow(0 0 7px rgba(255,255,255,0.5)); }
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(210,210,220,0.15)); }
+  50%       { filter: drop-shadow(0 0 7px rgba(210,210,220,0.45)); }
 }
 
 .about-photo-wrapper {
