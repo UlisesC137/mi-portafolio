@@ -118,6 +118,8 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
 });
 
+setLanguage('en');
+
 // ── RESUME TAB TOGGLE ─────────────────────────────────────────────────────────
 resumeTabs.forEach(tab => {
   tab.addEventListener('click', () => {
