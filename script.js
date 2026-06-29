@@ -84,10 +84,10 @@ gsap.utils.toArray('.stat-number').forEach(el => {
 });
 
 // ── LANGUAGE SWITCH ───────────────────────────────────────────────────────────
-const resumeIframe   = document.getElementById('resume-iframe');
+const resumeImg    = document.getElementById('resume-img');
 const resumeDownload = document.getElementById('resume-download');
-const resumeTabs     = document.querySelectorAll('.resume-tab');
-const contactResume  = document.getElementById('contact-resume-link');
+const resumeTabs   = document.querySelectorAll('.resume-tab');
+const contactResume = document.getElementById('contact-resume-link');
 
 function setLanguage(lang) {
   document.documentElement.lang = lang;
@@ -97,16 +97,17 @@ function setLanguage(lang) {
   });
 
   const isEn     = lang === 'en';
-  const src      = isEn ? 'Ulises%20Hern%C3%A1ndez%20Resume.pdf' : 'Ulises%20Hern%C3%A1ndez%20CV.pdf';
+  const img      = isEn ? 'assets/cv-en-page-1.jpg' : 'assets/cv-es-page-1.jpg';
+  const pdf      = isEn ? 'Ulises%20Hern%C3%A1ndez%20Resume.pdf' : 'Ulises%20Hern%C3%A1ndez%20CV.pdf';
   const filename = isEn ? 'Ulises Hernández Resume.pdf' : 'Ulises Hernández CV.pdf';
 
-  resumeIframe.src        = src;
-  resumeDownload.href     = src;
+  resumeImg.src           = img;
+  resumeDownload.href     = pdf;
   resumeDownload.download = filename;
-  resumeTabs.forEach(tab => tab.classList.toggle('active', tab.dataset.src === src));
+  resumeTabs.forEach(tab => tab.classList.toggle('active', tab.dataset.pdf === pdf));
 
   if (contactResume) {
-    contactResume.href     = src;
+    contactResume.href     = pdf;
     contactResume.download = filename;
   }
 }
@@ -120,8 +121,8 @@ resumeTabs.forEach(tab => {
   tab.addEventListener('click', () => {
     resumeTabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    resumeIframe.src        = tab.dataset.src;
-    resumeDownload.href     = tab.dataset.src;
+    resumeImg.src           = tab.dataset.img;
+    resumeDownload.href     = tab.dataset.pdf;
     resumeDownload.download = tab.dataset.filename;
   });
 });

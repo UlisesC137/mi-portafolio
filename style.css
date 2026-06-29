@@ -685,17 +685,14 @@ html[lang="es"] .lang-en { display: none; }
   border-color: var(--text);
 }
 
-/* ── RESUME VIEWER ───────────────────────────────────── */
-.resume-viewer {
-  border: 1px solid var(--border);
-  background: var(--surface);
+/* ── RESUME PAGES ────────────────────────────────────── */
+.resume-pages {
   margin-bottom: 32px;
+  border: 1px solid var(--border);
 }
 
-.resume-viewer iframe {
+.resume-page {
   width: 100%;
-  height: 900px;
-  border: none;
   display: block;
 }
 
@@ -847,7 +844,6 @@ html, body { overflow-x: hidden; }
   .skills-grid { grid-template-columns: 1fr; }
 
   /* Resume */
-  .resume-viewer iframe { height: 480px; }
   .resume-toggle { flex-direction: column; }
   .resume-tab + .resume-tab { border-left: 1px solid var(--border); border-top: none; }
 
