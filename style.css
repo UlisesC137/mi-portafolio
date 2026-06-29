@@ -358,7 +358,7 @@ html[lang="es"] .lang-en { display: none; }
 .stat-label {
   font-size: 11px;
   font-weight: 400;
-  color: var(--text-dim);
+  color: var(--text);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }

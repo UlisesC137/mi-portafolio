@@ -275,6 +275,7 @@ if (waveSvg) {
 
 // ── OCEAN RIPPLES ─────────────────────────────────────────────────────────────
 document.addEventListener('pointerdown', (e) => {
+  if (e.pointerType === 'touch') return;
   [0, 1, 2].forEach(i => {
     const ring = document.createElement('div');
     ring.className = 'ocean-ripple';
