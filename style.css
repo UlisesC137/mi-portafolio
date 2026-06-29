@@ -74,6 +74,110 @@ a { color: inherit; text-decoration: none; }
 
 .nav-links a:hover { color: var(--text); }
 
+.nav-links .nav-resume {
+  color: var(--gold);
+  border: 1px solid rgba(196,168,130,0.25);
+  padding: 5px 14px;
+  margin-left: 8px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-links .nav-resume:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ── HAMBURGER ───────────────────────────────────────── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text);
+}
+
+/* ── NAV OVERLAY ─────────────────────────────────────── */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.nav-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.nav-overlay-close {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 22px;
+  cursor: pointer;
+  padding: 8px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.nav-overlay-close:hover { color: var(--text); }
+
+.nav-overlay-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.nav-overlay-links a {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 10vw, 64px);
+  font-weight: 400;
+  color: var(--text-muted);
+  display: block;
+  padding: 8px 0;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s;
+}
+
+.nav-overlay.open .nav-overlay-links a { opacity: 1; transform: translateY(0); }
+.nav-overlay.open .nav-overlay-links li:nth-child(1) a { transition-delay: 0.08s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(2) a { transition-delay: 0.14s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(3) a { transition-delay: 0.20s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(4) a { transition-delay: 0.26s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(5) a { transition-delay: 0.32s; }
+
+.nav-overlay-links a:hover { color: var(--text); }
+
+.nav-overlay-links li:last-child a {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 20px;
+}
+
 /* ── HERO ───────────────────────────────────────────── */
 .hero {
   min-height: 100vh;
@@ -530,6 +634,7 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 600px) {
   .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
   .skills-grid { grid-template-columns: 1fr; }
   .timeline-item { grid-template-columns: 60px 1px 1fr; gap: 0 16px; }
   .hero-stat-row { flex-direction: column; gap: 24px; }
