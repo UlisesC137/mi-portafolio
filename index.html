@@ -1,13 +1,238 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Portafolio</title>
+  <title>Ulises Hernández — Data & BI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hola, soy Ulises 👋</h1>
-  <p>Bienvenido a mi portafolio.</p>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <span class="nav-logo">UH</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Data Science · Business Intelligence</p>
+      <h1 class="hero-name">Ulises<br><em>Hernández</em></h1>
+      <p class="hero-sub">I turn raw data into decisions that move businesses forward.<br>Currently doing that at LVMH – Moët Hennessy.</p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn-primary">See my work</a>
+        <a href="mailto:hernandez.anaya.ulises@gmail.com" class="btn-ghost">Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <span class="stat-number">1.5+</span>
+        <span class="stat-label">Years of experience</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-number">16K</span>
+        <span class="stat-label">Daily records automated</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-number">3</span>
+        <span class="stat-label">Industries served</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <p class="section-label reveal">About</p>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <h2>Bridging data<br>and business impact.</h2>
+          <p>I'm a Data Science student at ESCOM – IPN with hands-on experience building real data infrastructure at companies that actually use it at scale. I started automating and cleaning data at a sponsorship analytics firm, scaled to competitive intelligence pipelines at BP, and now I'm learning what it means to make data decisions that move a billion-dollar brand.</p>
+          <p>I care about one thing: making data actionable. Not pretty charts for the sake of it — dashboards that finance teams open every Monday morning because they need them.</p>
+        </div>
+        <div class="about-details reveal">
+          <div class="detail-item">
+            <span class="detail-label">Currently</span>
+            <span class="detail-value">BI Intern @ LVMH – Moët Hennessy</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Based in</span>
+            <span class="detail-value">Mexico City, MX</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Education</span>
+            <span class="detail-value">B.S. Data Science — ESCOM IPN (2027)</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Languages</span>
+            <span class="detail-value">Spanish (Native) · English (Professional)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section section-dark" id="experience">
+    <div class="container">
+      <p class="section-label reveal">Experience</p>
+      <h2 class="section-title reveal">Where I've built things.</h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-left">
+            <span class="timeline-year">2026</span>
+            <span class="timeline-present">Present</span>
+          </div>
+          <div class="timeline-line"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Business Intelligence Intern</h3>
+                <p class="timeline-company">LVMH – Moët Hennessy</p>
+              </div>
+              <span class="timeline-tag">Wines & Spirits Division</span>
+            </div>
+            <p class="timeline-desc">Working inside one of the world's most iconic luxury conglomerates, I consolidate financial and commercial data from multiple sources through ETL pipelines to power corporate reporting. I develop and maintain Power BI dashboards that track financial KPIs and sales performance — dashboards that leadership actually uses to make calls. I'm learning what it means when data stops being an exercise and starts being a decision.</p>
+            <div class="timeline-stack">
+              <span>Power BI</span><span>Python</span><span>SQL</span><span>ETL</span><span>SFTP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-left">
+            <span class="timeline-year">2025</span>
+          </div>
+          <div class="timeline-line"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Pricing Intern</h3>
+                <p class="timeline-company">BP</p>
+              </div>
+              <span class="timeline-tag">Energy · Competitive Intelligence</span>
+            </div>
+            <p class="timeline-desc">Built and deployed a full web scraping pipeline that extracted pricing data from gas stations across Mexico every single day — 16,000 records daily — giving BP's pricing team real-time visibility into competitor pricing nationwide. The pipeline ran on an Azure VM, automated with Power Automate, and saved $200 USD/month compared to the manual process. Also rescued a critical data script that was silently dropping 12,000 records per day.</p>
+            <div class="timeline-stack">
+              <span>Selenium</span><span>BeautifulSoup</span><span>Azure VM</span><span>Power Automate</span><span>Power BI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-left">
+            <span class="timeline-year">2024</span>
+          </div>
+          <div class="timeline-line"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Data Analyst</h3>
+                <p class="timeline-company">Smart Sponsorship Evolution</p>
+              </div>
+              <span class="timeline-tag">Entertainment · Sports Analytics</span>
+            </div>
+            <p class="timeline-desc">Joined a sponsorship analytics firm that measures how brands actually perform at concerts, festivals, and live events. My job was to bring order to chaos: I designed the relational database architecture from scratch, led the full data migration to a SQL server, cleaned years of historical data, and automated reporting with Python — turning a manual, error-prone process into something the team could rely on.</p>
+            <div class="timeline-stack">
+              <span>Python</span><span>SQL</span><span>MySQL</span><span>Excel</span><span>ETL</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="container">
+      <p class="section-label reveal">Skills</p>
+      <h2 class="section-title reveal">My tech stack.</h2>
+      <div class="skills-grid">
+
+        <div class="skill-card reveal">
+          <p class="skill-category">Languages</p>
+          <div class="skill-list">
+            <span>Python</span>
+            <span>SQL</span>
+            <span>Git</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <p class="skill-category">Data & ETL</p>
+          <div class="skill-list">
+            <span>Pandas</span>
+            <span>NumPy</span>
+            <span>Selenium</span>
+            <span>BeautifulSoup</span>
+            <span>MySQL</span>
+            <span>PostgreSQL</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <p class="skill-category">Visualization</p>
+          <div class="skill-list">
+            <span>Power BI</span>
+            <span>Tableau</span>
+            <span>Excel Advanced</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <p class="skill-category">Cloud & Platforms</p>
+          <div class="skill-list">
+            <span>Azure</span>
+            <span>Docker</span>
+            <span>Power Automate</span>
+            <span>GCS</span>
+            <span>GitHub</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section-dark" id="contact">
+    <div class="container contact-container">
+      <p class="section-label reveal">Contact</p>
+      <h2 class="section-title reveal">Let's build something.</h2>
+      <p class="contact-sub reveal">Open to internships, full-time roles, and interesting data problems.<br>If you're working on something that matters, let's talk.</p>
+      <div class="contact-links reveal">
+        <a href="mailto:hernandez.anaya.ulises@gmail.com" class="contact-link">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-value">hernandez.anaya.ulises@gmail.com</span>
+        </a>
+        <a href="https://linkedin.com/in/ulises-hernandez" target="_blank" class="contact-link">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-value">Ulises Hernández</span>
+        </a>
+        <a href="https://github.com/UlisesC137" target="_blank" class="contact-link">
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-value">UlisesC137</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 Ulises Hernández Anaya. Built with intention.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
