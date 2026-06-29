@@ -539,6 +539,25 @@ a { color: inherit; text-decoration: none; }
 
 .skill-card:hover .skill-list span { color: var(--text); }
 
+/* ── RESUME VIEWER ───────────────────────────────────── */
+.resume-viewer {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  margin-bottom: 32px;
+}
+
+.resume-viewer iframe {
+  width: 100%;
+  height: 900px;
+  border: none;
+  display: block;
+}
+
+.resume-actions {
+  display: flex;
+  justify-content: center;
+}
+
 /* ── CONTACT ────────────────────────────────────────── */
 .contact-container {
   max-width: 700px;
@@ -635,6 +654,7 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 600px) {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
+  .resume-viewer iframe { height: 520px; }
   .skills-grid { grid-template-columns: 1fr; }
   .timeline-item { grid-template-columns: 60px 1px 1fr; gap: 0 16px; }
   .hero-stat-row { flex-direction: column; gap: 24px; }
