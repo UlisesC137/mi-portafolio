@@ -1,20 +1,87 @@
-// Nav scroll effect
+gsap.registerPlugin(ScrollTrigger);
+
+// ── NAV SCROLL BORDER ─────────────────────────────────────────────────────────
 const nav = document.querySelector('.nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// Reveal on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
+// ── NAV ENTRANCE ──────────────────────────────────────────────────────────────
+gsap.from('.nav', {
+  y: -20,
+  opacity: 0,
+  duration: 0.6,
+  ease: 'power2.out',
+});
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// ── HERO SEQUENCE ─────────────────────────────────────────────────────────────
+gsap.set(['.hero-eyebrow', '.hero-name', '.hero-sub', '.hero-cta', '.hero-stat-row'], {
+  opacity: 0,
+  y: 22,
+});
+
+gsap.timeline({ delay: 0.15 })
+  .to('.hero-eyebrow',  { opacity: 1, y: 0, duration: 0.7,  ease: 'power2.out' })
+  .to('.hero-name',     { opacity: 1, y: 0, duration: 0.85, ease: 'power2.out' }, '-=0.45')
+  .to('.hero-sub',      { opacity: 1, y: 0, duration: 0.7,  ease: 'power2.out' }, '-=0.45')
+  .to('.hero-cta',      { opacity: 1, y: 0, duration: 0.6,  ease: 'power2.out' }, '-=0.35')
+  .to('.hero-stat-row', { opacity: 1, y: 0, duration: 0.6,  ease: 'power2.out' }, '-=0.25');
+
+// ── REVEAL ON SCROLL ──────────────────────────────────────────────────────────
+gsap.utils.toArray('.reveal').forEach(el => {
+  gsap.to(el, {
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 88%',
+    },
+    opacity: 1,
+    y: 0,
+    duration: 0.65,
+    ease: 'power2.out',
+  });
+});
+
+// ── TIMELINE LINE DRAW ────────────────────────────────────────────────────────
+gsap.utils.toArray('.timeline-line').forEach(line => {
+  gsap.from(line, {
+    scaleY: 0,
+    transformOrigin: 'top center',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: line.closest('.timeline-item'),
+      start: 'top 72%',
+      end: 'bottom 35%',
+      scrub: 1,
+    },
+  });
+});
+
+// ── STAT COUNTERS ─────────────────────────────────────────────────────────────
+gsap.utils.toArray('.stat-number').forEach(el => {
+  const raw     = el.textContent.trim();
+  const num     = parseFloat(raw);
+  const suffix  = raw.replace(/[\d.]/g, '');
+  const isFloat = raw.includes('.');
+  const obj     = { val: 0 };
+
+  ScrollTrigger.create({
+    trigger: el,
+    start: 'top 90%',
+    once: true,
+    onEnter() {
+      gsap.to(obj, {
+        val: num,
+        duration: 1.6,
+        ease: 'power2.out',
+        onUpdate() {
+          el.textContent = (isFloat
+            ? obj.val.toFixed(1)
+            : Math.round(obj.val)) + suffix;
+        },
+      });
+    },
+  });
+});
 
 // ── LANGUAGE SWITCH ───────────────────────────────────────────────────────────
 const resumeIframe   = document.getElementById('resume-iframe');
