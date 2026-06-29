@@ -616,6 +616,8 @@ a { color: inherit; text-decoration: none; }
   height: 18px;
   object-fit: contain;
   flex-shrink: 0;
+  filter: brightness(0) invert(1);
+  opacity: 0.75;
 }
 
 .skill-item span {
