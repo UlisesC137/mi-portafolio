@@ -14,53 +14,65 @@
   <!-- NAV -->
   <nav class="nav">
     <span class="nav-logo">UH</span>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#resume" class="nav-resume">Resume</a></li>
-    </ul>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about" data-i18n="nav-about">About</a></li>
+        <li><a href="#experience" data-i18n="nav-experience">Experience</a></li>
+        <li><a href="#skills" data-i18n="nav-skills">Skills</a></li>
+        <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+        <li><a href="#resume" class="nav-resume" data-i18n="nav-resume">Resume</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- MOBILE OVERLAY -->
   <div class="nav-overlay" id="nav-overlay">
     <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Close menu">✕</button>
     <ul class="nav-overlay-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#resume">Resume</a></li>
+      <li><a href="#about" data-i18n="nav-about">About</a></li>
+      <li><a href="#experience" data-i18n="nav-experience">Experience</a></li>
+      <li><a href="#skills" data-i18n="nav-skills">Skills</a></li>
+      <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+      <li><a href="#resume" data-i18n="nav-resume">Resume</a></li>
     </ul>
+    <div class="lang-toggle lang-toggle-overlay">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="es">ES</button>
+    </div>
   </div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <p class="hero-eyebrow">Data Science · Business Intelligence</p>
+      <p class="hero-eyebrow" data-i18n="hero-eyebrow">Data Science · Business Intelligence</p>
       <h1 class="hero-name">Ulises<br><em>Hernández</em></h1>
-      <p class="hero-sub">I turn raw data into decisions that move businesses forward.<br>Currently doing that at LVMH – Moët Hennessy.</p>
+      <p class="hero-sub" data-i18n="hero-sub">I turn raw data into decisions that move businesses forward.<br>Currently doing that at LVMH – Moët Hennessy.</p>
       <div class="hero-cta">
-        <a href="#experience" class="btn-primary">See my work</a>
-        <a href="mailto:hernandez.anaya.ulises@gmail.com" class="btn-ghost">Get in touch</a>
+        <a href="#experience" class="btn-primary" data-i18n="hero-cta-primary">See my work</a>
+        <a href="mailto:hernandez.anaya.ulises@gmail.com" class="btn-ghost" data-i18n="hero-cta-ghost">Get in touch</a>
       </div>
     </div>
     <div class="hero-stat-row">
       <div class="hero-stat">
         <span class="stat-number">1.5+</span>
-        <span class="stat-label">Years of experience</span>
+        <span class="stat-label" data-i18n="stat-label-1">Years of experience</span>
       </div>
       <div class="hero-stat">
         <span class="stat-number">16K</span>
-        <span class="stat-label">Daily records automated</span>
+        <span class="stat-label" data-i18n="stat-label-2">Daily records automated</span>
       </div>
       <div class="hero-stat">
         <span class="stat-number">3</span>
-        <span class="stat-label">Industries served</span>
+        <span class="stat-label" data-i18n="stat-label-3">Industries served</span>
       </div>
     </div>
   </section>
@@ -68,29 +80,29 @@
   <!-- ABOUT -->
   <section class="section" id="about">
     <div class="container">
-      <p class="section-label reveal">About</p>
+      <p class="section-label reveal" data-i18n="about-label">About</p>
       <div class="about-grid">
         <div class="about-text reveal">
-          <h2>Bridging data<br>and business impact.</h2>
-          <p>I'm a Data Science student at ESCOM – IPN with hands-on experience building real data infrastructure at companies that actually use it at scale. I started automating and cleaning data at a sponsorship analytics firm, scaled to competitive intelligence pipelines at BP, and now I'm learning what it means to make data decisions that move a billion-dollar brand.</p>
-          <p>I care about one thing: making data actionable. Not pretty charts for the sake of it — dashboards that finance teams open every Monday morning because they need them.</p>
+          <h2 data-i18n="about-title">Bridging data<br>and business impact.</h2>
+          <p data-i18n="about-p1">I'm a Data Science student at ESCOM – IPN with hands-on experience building real data infrastructure at companies that actually use it at scale. I started automating and cleaning data at a sponsorship analytics firm, scaled to competitive intelligence pipelines at BP, and now I'm learning what it means to make data decisions that move a billion-dollar brand.</p>
+          <p data-i18n="about-p2">I care about one thing: making data actionable. Not pretty charts for the sake of it — dashboards that finance teams open every Monday morning because they need them.</p>
         </div>
         <div class="about-details reveal">
           <div class="detail-item">
-            <span class="detail-label">Currently</span>
-            <span class="detail-value">BI Intern @ LVMH – Moët Hennessy</span>
+            <span class="detail-label" data-i18n="detail-label-currently">Currently</span>
+            <span class="detail-value" data-i18n="detail-value-currently">BI Intern @ LVMH – Moët Hennessy</span>
           </div>
           <div class="detail-item">
-            <span class="detail-label">Based in</span>
-            <span class="detail-value">Mexico City, MX</span>
+            <span class="detail-label" data-i18n="detail-label-based">Based in</span>
+            <span class="detail-value" data-i18n="detail-value-based">Mexico City, MX</span>
           </div>
           <div class="detail-item">
-            <span class="detail-label">Education</span>
-            <span class="detail-value">B.S. Data Science — ESCOM IPN (2027)</span>
+            <span class="detail-label" data-i18n="detail-label-education">Education</span>
+            <span class="detail-value" data-i18n="detail-value-education">B.S. Data Science — ESCOM IPN (2027)</span>
           </div>
           <div class="detail-item">
-            <span class="detail-label">Languages</span>
-            <span class="detail-value">Spanish (Native) · English (Professional)</span>
+            <span class="detail-label" data-i18n="detail-label-languages">Languages</span>
+            <span class="detail-value" data-i18n="detail-value-languages">Spanish (Native) · English (Professional)</span>
           </div>
         </div>
       </div>
@@ -100,26 +112,26 @@
   <!-- EXPERIENCE -->
   <section class="section section-dark" id="experience">
     <div class="container">
-      <p class="section-label reveal">Experience</p>
-      <h2 class="section-title reveal">Where I've built things.</h2>
+      <p class="section-label reveal" data-i18n="exp-label">Experience</p>
+      <h2 class="section-title reveal" data-i18n="exp-title">Where I've built things.</h2>
 
       <div class="timeline">
 
         <div class="timeline-item reveal">
           <div class="timeline-left">
             <span class="timeline-year">2026</span>
-            <span class="timeline-present">Present</span>
+            <span class="timeline-present" data-i18n="exp-present">Present</span>
           </div>
           <div class="timeline-line"></div>
           <div class="timeline-content">
             <div class="timeline-header">
               <div>
-                <h3>Business Intelligence Intern</h3>
+                <h3 data-i18n="exp-1-title">Business Intelligence Intern</h3>
                 <p class="timeline-company">LVMH – Moët Hennessy</p>
               </div>
-              <span class="timeline-tag">Wines & Spirits Division</span>
+              <span class="timeline-tag" data-i18n="exp-1-tag">Wines & Spirits Division</span>
             </div>
-            <p class="timeline-desc">Working inside one of the world's most iconic luxury conglomerates, I consolidate financial and commercial data from multiple sources through ETL pipelines to power corporate reporting. I develop and maintain Power BI dashboards that track financial KPIs and sales performance — dashboards that leadership actually uses to make calls. I'm learning what it means when data stops being an exercise and starts being a decision.</p>
+            <p class="timeline-desc" data-i18n="exp-1-desc">Working inside one of the world's most iconic luxury conglomerates, I consolidate financial and commercial data from multiple sources through ETL pipelines to power corporate reporting. I develop and maintain Power BI dashboards that track financial KPIs and sales performance — dashboards that leadership actually uses to make calls. I'm learning what it means when data stops being an exercise and starts being a decision.</p>
             <div class="timeline-stack">
               <span>Power BI</span><span>Python</span><span>SQL</span><span>ETL</span><span>SFTP</span>
             </div>
@@ -134,12 +146,12 @@
           <div class="timeline-content">
             <div class="timeline-header">
               <div>
-                <h3>Pricing Intern</h3>
+                <h3 data-i18n="exp-2-title">Pricing Intern</h3>
                 <p class="timeline-company">BP</p>
               </div>
-              <span class="timeline-tag">Energy · Competitive Intelligence</span>
+              <span class="timeline-tag" data-i18n="exp-2-tag">Energy · Competitive Intelligence</span>
             </div>
-            <p class="timeline-desc">Built and deployed a full web scraping pipeline that extracted pricing data from gas stations across Mexico every single day — 16,000 records daily — giving BP's pricing team real-time visibility into competitor pricing nationwide. The pipeline ran on an Azure VM, automated with Power Automate, and saved $200 USD/month compared to the manual process. Also rescued a critical data script that was silently dropping 12,000 records per day.</p>
+            <p class="timeline-desc" data-i18n="exp-2-desc">Built and deployed a full web scraping pipeline that extracted pricing data from gas stations across Mexico every single day — 16,000 records daily — giving BP's pricing team real-time visibility into competitor pricing nationwide. The pipeline ran on an Azure VM, automated with Power Automate, and saved $200 USD/month compared to the manual process. Also rescued a critical data script that was silently dropping 12,000 records per day.</p>
             <div class="timeline-stack">
               <span>Selenium</span><span>BeautifulSoup</span><span>Azure VM</span><span>Power Automate</span><span>Power BI</span>
             </div>
@@ -154,12 +166,12 @@
           <div class="timeline-content">
             <div class="timeline-header">
               <div>
-                <h3>Data Analyst</h3>
+                <h3 data-i18n="exp-3-title">Data Analyst</h3>
                 <p class="timeline-company">Smart Sponsorship Evolution</p>
               </div>
-              <span class="timeline-tag">Entertainment · Sports Analytics</span>
+              <span class="timeline-tag" data-i18n="exp-3-tag">Entertainment · Sports Analytics</span>
             </div>
-            <p class="timeline-desc">Joined a sponsorship analytics firm that measures how brands actually perform at concerts, festivals, and live events. My job was to bring order to chaos: I designed the relational database architecture from scratch, led the full data migration to a SQL server, cleaned years of historical data, and automated reporting with Python — turning a manual, error-prone process into something the team could rely on.</p>
+            <p class="timeline-desc" data-i18n="exp-3-desc">Joined a sponsorship analytics firm that measures how brands actually perform at concerts, festivals, and live events. My job was to bring order to chaos: I designed the relational database architecture from scratch, led the full data migration to a SQL server, cleaned years of historical data, and automated reporting with Python — turning a manual, error-prone process into something the team could rely on.</p>
             <div class="timeline-stack">
               <span>Python</span><span>SQL</span><span>MySQL</span><span>Excel</span><span>ETL</span>
             </div>
@@ -173,12 +185,12 @@
   <!-- SKILLS -->
   <section class="section" id="skills">
     <div class="container">
-      <p class="section-label reveal">Skills</p>
-      <h2 class="section-title reveal">My tech stack.</h2>
+      <p class="section-label reveal" data-i18n="skills-label">Skills</p>
+      <h2 class="section-title reveal" data-i18n="skills-title">My tech stack.</h2>
       <div class="skills-grid">
 
         <div class="skill-card reveal">
-          <p class="skill-category">Languages</p>
+          <p class="skill-category" data-i18n="skill-cat-1">Languages</p>
           <div class="skill-list">
             <span>Python</span>
             <span>SQL</span>
@@ -187,7 +199,7 @@
         </div>
 
         <div class="skill-card reveal">
-          <p class="skill-category">Data & ETL</p>
+          <p class="skill-category" data-i18n="skill-cat-2">Data & ETL</p>
           <div class="skill-list">
             <span>Pandas</span>
             <span>NumPy</span>
@@ -199,7 +211,7 @@
         </div>
 
         <div class="skill-card reveal">
-          <p class="skill-category">Visualization</p>
+          <p class="skill-category" data-i18n="skill-cat-3">Visualization</p>
           <div class="skill-list">
             <span>Power BI</span>
             <span>Tableau</span>
@@ -208,7 +220,7 @@
         </div>
 
         <div class="skill-card reveal">
-          <p class="skill-category">Cloud & Platforms</p>
+          <p class="skill-category" data-i18n="skill-cat-4">Cloud & Platforms</p>
           <div class="skill-list">
             <span>Azure</span>
             <span>Docker</span>
@@ -223,10 +235,10 @@
   </section>
 
   <!-- RESUME -->
-  <section class="section" id="resume">
+  <section class="section section-dark" id="resume">
     <div class="container">
-      <p class="section-label reveal">Resume</p>
-      <h2 class="section-title reveal">The full picture.</h2>
+      <p class="section-label reveal" data-i18n="resume-label">Resume</p>
+      <h2 class="section-title reveal" data-i18n="resume-title">The full picture.</h2>
       <div class="resume-toggle reveal">
         <button class="resume-tab active" data-src="Ulises%20Hern%C3%A1ndez%20CV.pdf" data-filename="Ulises Hernández CV.pdf">Español</button>
         <button class="resume-tab" data-src="Ulises%20Hern%C3%A1ndez%20Resume.pdf" data-filename="Ulises Hernández Resume.pdf">English</button>
@@ -235,40 +247,40 @@
         <iframe id="resume-iframe" src="Ulises%20Hern%C3%A1ndez%20CV.pdf" title="Ulises Hernández"></iframe>
       </div>
       <div class="resume-actions reveal">
-        <a id="resume-download" href="Ulises%20Hern%C3%A1ndez%20CV.pdf" download="Ulises Hernández CV.pdf" class="btn-ghost">Download PDF</a>
+        <a id="resume-download" href="Ulises%20Hern%C3%A1ndez%20CV.pdf" download="Ulises Hernández CV.pdf" class="btn-ghost" data-i18n="resume-download">Download PDF</a>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="section section-dark" id="contact">
+  <section class="section" id="contact">
     <div class="container contact-container">
-      <p class="section-label reveal">Contact</p>
-      <h2 class="section-title reveal">Let's build something.</h2>
-      <p class="contact-sub reveal">Open to internships, full-time roles, and interesting data problems.<br>If you're working on something that matters, let's talk.</p>
+      <p class="section-label reveal" data-i18n="contact-label">Contact</p>
+      <h2 class="section-title reveal" data-i18n="contact-title">Let's build something.</h2>
+      <p class="contact-sub reveal" data-i18n="contact-sub">Open to internships, full-time roles, and interesting data problems.<br>If you're working on something that matters, let's talk.</p>
       <div class="contact-links reveal">
         <a href="mailto:hernandez.anaya.ulises@gmail.com" class="contact-link">
-          <span class="contact-link-label">Email</span>
+          <span class="contact-link-label" data-i18n="contact-email-label">Email</span>
           <span class="contact-link-value">hernandez.anaya.ulises@gmail.com</span>
         </a>
         <a href="https://linkedin.com/in/ulises-hernandez" target="_blank" class="contact-link">
-          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-label" data-i18n="contact-linkedin-label">LinkedIn</span>
           <span class="contact-link-value">Ulises Hernández</span>
         </a>
         <a href="https://github.com/UlisesC137" target="_blank" class="contact-link">
-          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-label" data-i18n="contact-github-label">GitHub</span>
           <span class="contact-link-value">UlisesC137</span>
         </a>
-        <a href="Ulises%20Hern%C3%A1ndez%20CV.pdf" download class="contact-link">
-          <span class="contact-link-label">Resume</span>
-          <span class="contact-link-value">Download PDF</span>
+        <a href="Ulises%20Hern%C3%A1ndez%20CV.pdf" download="Ulises Hernández CV.pdf" class="contact-link" id="contact-resume-link">
+          <span class="contact-link-label" data-i18n="contact-resume-label">Resume</span>
+          <span class="contact-link-value" data-i18n="contact-resume-value">Download PDF</span>
         </a>
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    <p>© 2026 Ulises Hernández Anaya. Built with intention.</p>
+    <p data-i18n="footer-text">© 2026 Ulises Hernández Anaya. Built with intention.</p>
   </footer>
 
   <script src="script.js"></script>
