@@ -155,68 +155,124 @@ if (waveSvg) {
   window.addEventListener('resize', startWave);
 }
 
-// ── HERO WAVES (canvas) ───────────────────────────────────────────────────────
+// ── HERO WAVES (WebGL shader — agua realista) ─────────────────────────────────
 (function () {
   const canvas = document.getElementById('hero-waves');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+
+  const vert = `
+    attribute vec2 a_pos;
+    void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+  `;
+
+  const frag = `
+    precision highp float;
+    uniform float u_time;
+    uniform vec2  u_res;
+
+    float waterH(vec2 p, float t) {
+      float h = 0.0;
+      h += sin(p.x * 2.10 + t * 0.65) * 0.32;
+      h += sin(p.x * 3.80 - p.y * 0.60 + t * 1.05) * 0.22;
+      h += sin(p.x * 1.45 + p.y * 0.90 - t * 0.48) * 0.28;
+      h += sin(p.x * 5.30 + t * 1.38) * 0.11;
+      h += sin(p.x * 8.20 - t * 0.82) * 0.065;
+      h += sin(p.y * 4.40 + p.x * 0.35 + t * 0.93) * 0.085;
+      h += sin(p.x * 12.1 + p.y * 1.20 - t * 1.60) * 0.038;
+      return h;
+    }
+
+    void main() {
+      vec2 uv  = gl_FragCoord.xy / u_res;
+      uv.y     = 1.0 - uv.y;
+
+      /* perspectiva: las coordenadas se abren hacia el horizonte */
+      float pf = 1.0 + (1.0 - uv.y) * 2.5;
+      vec2  p  = vec2(uv.x * pf * 4.5, uv.y * 3.2);
+
+      float eps = 0.025;
+      float h   = waterH(p, u_time);
+      float hx  = waterH(p + vec2(eps, 0.0), u_time);
+      float hy  = waterH(p + vec2(0.0, eps), u_time);
+
+      /* normal de superficie */
+      vec3  N = normalize(vec3(-(hx - h) / eps, -(hy - h) / eps, 1.0));
+
+      /* vectores */
+      vec3  L = normalize(vec3(0.30,  0.55, 0.78));
+      vec3  V = normalize(vec3(0.00, -0.40, 1.00));
+      vec3  R = reflect(-L, N);
+
+      float diffuse  = max(dot(N, L), 0.0);
+      float specular = pow(max(dot(R, V), 0.0), 72.0);
+      float fresnel  = pow(1.0 - max(dot(N, V), 0.0), 2.5);
+
+      /* brillo final en escala de grises */
+      float col = 0.035
+                + diffuse  * 0.09
+                + specular * 0.65 * fresnel
+                + fresnel  * 0.07
+                + h        * 0.025;
+      col = clamp(col, 0.0, 1.0);
+
+      /* fade en bordes para que no corte abruptamente */
+      float fadeX = smoothstep(0.0, 0.06, uv.x) * smoothstep(0.0, 0.06, 1.0 - uv.x);
+      float fadeY = smoothstep(0.0, 0.05, uv.y) * smoothstep(0.0, 0.04, 1.0 - uv.y);
+
+      gl_FragColor = vec4(vec3(col), col * 0.82 * fadeX * fadeY);
+    }
+  `;
+
+  function mkShader(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
+  }
+
+  const vs = mkShader(gl.VERTEX_SHADER, vert);
+  const fs = mkShader(gl.FRAGMENT_SHADER, frag);
+  if (!vs || !fs) return;
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+
+  gl.useProgram(prog);
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER,
+    new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+
+  const aPos = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(aPos);
+  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes  = gl.getUniformLocation(prog, 'u_res');
 
   function resize() {
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width  = canvas.offsetWidth  * dpr;
-    canvas.height = canvas.offsetHeight * dpr;
-    ctx.scale(dpr, dpr);
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
   }
   window.addEventListener('resize', resize);
   resize();
 
-  // Capas: [fracción_y, amplitud, frecuencia, fase, velocidad, opacidad, grosor, blur]
-  // De fondo (borrosas) → primer plano (nítidas)
-  const layers = [
-    [0.40, 60, 0.0032, 0.0,  0.16, 0.055, 2.0, 6],
-    [0.60, 50, 0.0038, 1.5,  0.13, 0.045, 2.0, 7],
-    [0.45, 38, 0.0052, 2.8,  0.22, 0.08,  1.2, 3],
-    [0.55, 30, 0.0058, 4.1,  0.20, 0.07,  1.2, 3.5],
-    [0.50, 24, 0.0072, 0.9,  0.28, 0.10,  1.0, 1.5],
-    [0.47, 18, 0.0088, 3.3,  0.36, 0.14,  0.8, 0.5],
-    [0.53, 15, 0.0096, 5.7,  0.38, 0.12,  0.8, 0.5],
-    [0.50, 11, 0.0118, 2.1,  0.46, 0.18,  0.6, 0],
-    [0.48,  8, 0.0140, 4.6,  0.52, 0.15,  0.5, 0],
-  ];
-
-  function waveY(x, t, amp, freq, phase, speed) {
-    return amp * Math.sin(x * freq + t * speed + phase)
-         + amp * 0.28 * Math.sin(x * freq * 2.3 + t * speed * 1.4 + phase)
-         + amp * 0.10 * Math.sin(x * freq * 4.1 + t * speed * 0.7 + phase);
+  const t0 = performance.now();
+  function render() {
+    gl.uniform1f(uTime, (performance.now() - t0) * 0.001);
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
   }
-
-  let t = 0;
-  function draw() {
-    const W = canvas.offsetWidth;
-    const H = canvas.offsetHeight;
-    ctx.clearRect(0, 0, W, H);
-
-    layers.forEach(([yFrac, amp, freq, phase, speed, opacity, lw, blur]) => {
-      ctx.save();
-      ctx.filter = blur > 0 ? `blur(${blur}px)` : 'none';
-      ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
-      ctx.lineWidth = lw;
-      ctx.beginPath();
-      const cy = H * yFrac;
-      for (let x = 0; x <= W; x += 1.5) {
-        const y = cy + waveY(x, t, amp, freq, phase, speed);
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.stroke();
-      ctx.restore();
-    });
-
-    t += 0.010;
-    if (!document.hidden) requestAnimationFrame(draw);
-    else setTimeout(() => requestAnimationFrame(draw), 500);
-  }
-
-  requestAnimationFrame(draw);
+  requestAnimationFrame(render);
 })();
 
 // ── OCEAN RIPPLES ─────────────────────────────────────────────────────────────
