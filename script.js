@@ -189,7 +189,6 @@ if (waveSvg) {
       vec2 uv  = gl_FragCoord.xy / u_res;
       uv.y     = 1.0 - uv.y;
 
-      /* perspectiva: las coordenadas se abren hacia el horizonte */
       float pf = 1.0 + (1.0 - uv.y) * 2.5;
       vec2  p  = vec2(uv.x * pf * 4.5, uv.y * 3.2);
 
@@ -198,31 +197,30 @@ if (waveSvg) {
       float hx  = waterH(p + vec2(eps, 0.0), u_time);
       float hy  = waterH(p + vec2(0.0, eps), u_time);
 
-      /* normal de superficie */
-      vec3  N = normalize(vec3(-(hx - h) / eps, -(hy - h) / eps, 1.0));
+      /* normal con escala pronunciada para shading visible */
+      vec3  N = normalize(vec3(-(hx - h) / eps * 4.0, -(hy - h) / eps * 4.0, 1.0));
 
-      /* vectores */
       vec3  L = normalize(vec3(0.30,  0.55, 0.78));
       vec3  V = normalize(vec3(0.00, -0.40, 1.00));
       vec3  R = reflect(-L, N);
 
       float diffuse  = max(dot(N, L), 0.0);
-      float specular = pow(max(dot(R, V), 0.0), 72.0);
-      float fresnel  = pow(1.0 - max(dot(N, V), 0.0), 2.5);
+      float specular = pow(max(dot(R, V), 0.0), 40.0);
+      float fresnel  = pow(1.0 - max(dot(N, V), 0.0), 2.0);
 
-      /* brillo final en escala de grises */
-      float col = 0.035
-                + diffuse  * 0.09
-                + specular * 0.65 * fresnel
-                + fresnel  * 0.07
-                + h        * 0.025;
+      /* agua oscura base + cara iluminada + destellos especulares */
+      float col = 0.05
+                + diffuse  * 0.30
+                + specular * 0.95 * fresnel
+                + fresnel  * 0.20;
       col = clamp(col, 0.0, 1.0);
 
-      /* fade en bordes para que no corte abruptamente */
-      float fadeX = smoothstep(0.0, 0.06, uv.x) * smoothstep(0.0, 0.06, 1.0 - uv.x);
-      float fadeY = smoothstep(0.0, 0.05, uv.y) * smoothstep(0.0, 0.04, 1.0 - uv.y);
+      float fadeX = smoothstep(0.0, 0.08, uv.x) * smoothstep(0.0, 0.08, 1.0 - uv.x);
+      float fadeY = smoothstep(0.0, 0.06, uv.y) * smoothstep(0.0, 0.05, 1.0 - uv.y);
 
-      gl_FragColor = vec4(vec3(col), col * 0.82 * fadeX * fadeY);
+      /* alpha: zonas oscuras casi transparentes, destellos opacos */
+      float alpha = clamp(0.25 + col * 0.75, 0.0, 0.92) * fadeX * fadeY;
+      gl_FragColor = vec4(vec3(col), alpha);
     }
   `;
 
