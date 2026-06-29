@@ -14,6 +14,37 @@ gsap.from('.nav', {
   ease: 'power2.out',
 });
 
+// ── LOGO ANIMATION ────────────────────────────────────────────────────────────
+const logoImg  = document.getElementById('nav-logo-img');
+const logoLink = document.getElementById('nav-logo-link');
+
+// entrance: espira desde cero, flash de energía, elastic bounce
+gsap.timeline({ delay: 0.55 })
+  .fromTo(logoImg,
+    { autoAlpha: 0, scale: 0, rotation: -180 },
+    { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.65, ease: 'back.out(2.8)' }
+  )
+  .to(logoImg, { scale: 1.22, duration: 0.1, ease: 'power3.in' })
+  .to(logoImg, { scale: 1,    duration: 0.55, ease: 'elastic.out(1.6, 0.45)' })
+  // flota suave en loop (like floating in zero-gravity)
+  .to(logoImg, { y: -5, duration: 1.9, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+
+// hover: coin-flip en Y
+let flipping = false;
+logoLink.addEventListener('mouseenter', () => {
+  if (flipping) return;
+  flipping = true;
+  gsap.to(logoImg, {
+    rotationY: 360,
+    duration: 0.55,
+    ease: 'power2.inOut',
+    onComplete() {
+      gsap.set(logoImg, { rotationY: 0 });
+      flipping = false;
+    },
+  });
+});
+
 // ── HERO SEQUENCE ─────────────────────────────────────────────────────────────
 gsap.set(['.hero-eyebrow', '.hero-name', '.hero-sub', '.hero-cta', '.hero-stat-row'], {
   opacity: 0,
