@@ -434,27 +434,11 @@ html[lang="es"] .lang-en { display: none; }
 }
 
 @keyframes photo-frame-glow {
-  0%, 100% { filter: drop-shadow(0 0 6px rgba(78,168,208,0.35)) drop-shadow(0 0 2px rgba(78,168,208,0.2)); }
-  50%       { filter: drop-shadow(0 0 22px rgba(78,168,208,0.9)) drop-shadow(0 0 8px rgba(78,168,208,0.6)); }
-}
-
-.about-photo-glow {
-  position: absolute;
-  inset: -5px;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background: rgba(78, 168, 208, 0.55);
-  animation: photo-glow-wave 2.8s ease-in-out infinite;
-  z-index: 0;
-}
-
-@keyframes photo-glow-wave {
-  0%, 100% { opacity: 0.45; }
-  50%       { opacity: 1; }
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(210,210,220,0.3)) drop-shadow(0 0 2px rgba(255,255,255,0.15)); }
+  50%       { filter: drop-shadow(0 0 20px rgba(210,210,220,0.85)) drop-shadow(0 0 7px rgba(255,255,255,0.5)); }
 }
 
 .about-photo-wrapper {
-  position: relative;
-  z-index: 1;
   width: 100%;
   overflow: hidden;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
