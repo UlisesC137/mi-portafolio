@@ -816,8 +816,7 @@ html[lang="es"] .lang-en { display: none; }
   z-index: 9998;
 }
 
-/* ── REVEAL ANIMATION (GSAP maneja opacity/transform) ── */
-.reveal { opacity: 0; }
+/* ── REVEAL ANIMATION (GSAP fromTo maneja el estado inicial) ── */
 
 
 /* ── RESPONSIVE ─────────────────────────────────────── */
