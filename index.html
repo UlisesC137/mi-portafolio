@@ -227,11 +227,15 @@
     <div class="container">
       <p class="section-label reveal">Resume</p>
       <h2 class="section-title reveal">The full picture.</h2>
+      <div class="resume-toggle reveal">
+        <button class="resume-tab active" data-src="Ulises%20Hern%C3%A1ndez%20CV.pdf" data-filename="Ulises Hernández CV.pdf">Español</button>
+        <button class="resume-tab" data-src="Ulises%20Hern%C3%A1ndez%20Resume.pdf" data-filename="Ulises Hernández Resume.pdf">English</button>
+      </div>
       <div class="resume-viewer reveal">
-        <iframe src="Ulises%20Hern%C3%A1ndez%20CV.pdf" title="Ulises Hernández Resume"></iframe>
+        <iframe id="resume-iframe" src="Ulises%20Hern%C3%A1ndez%20CV.pdf" title="Ulises Hernández"></iframe>
       </div>
       <div class="resume-actions reveal">
-        <a href="Ulises%20Hern%C3%A1ndez%20CV.pdf" download class="btn-ghost">Download PDF</a>
+        <a id="resume-download" href="Ulises%20Hern%C3%A1ndez%20CV.pdf" download="Ulises Hernández CV.pdf" class="btn-ghost">Download PDF</a>
       </div>
     </div>
   </section>

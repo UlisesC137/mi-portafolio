@@ -539,6 +539,38 @@ a { color: inherit; text-decoration: none; }
 
 .skill-card:hover .skill-list span { color: var(--text); }
 
+/* ── RESUME TOGGLE ───────────────────────────────────── */
+.resume-toggle {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.resume-tab {
+  padding: 10px 32px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.resume-tab + .resume-tab { border-left: none; }
+
+.resume-tab.active {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+
+.resume-tab:not(.active):hover {
+  color: var(--text);
+  border-color: var(--gold-dim);
+}
+
 /* ── RESUME VIEWER ───────────────────────────────────── */
 .resume-viewer {
   border: 1px solid var(--border);

@@ -18,6 +18,21 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// Resume language toggle
+const resumeTabs = document.querySelectorAll('.resume-tab');
+const resumeIframe = document.getElementById('resume-iframe');
+const resumeDownload = document.getElementById('resume-download');
+
+resumeTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    resumeTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    resumeIframe.src = tab.dataset.src;
+    resumeDownload.href = tab.dataset.src;
+    resumeDownload.download = tab.dataset.filename;
+  });
+});
+
 // Hamburger menu
 const hamburger = document.getElementById('nav-hamburger');
 const overlay = document.getElementById('nav-overlay');
