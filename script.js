@@ -25,7 +25,8 @@ gsap.timeline({ delay: 0.15 })
   .to('.hero-name',     { opacity: 1, y: 0, duration: 0.85, ease: 'power2.out' }, '-=0.45')
   .to('.hero-sub',      { opacity: 1, y: 0, duration: 0.7,  ease: 'power2.out' }, '-=0.45')
   .to('.hero-cta',      { opacity: 1, y: 0, duration: 0.6,  ease: 'power2.out' }, '-=0.35')
-  .to('.hero-stat-row', { opacity: 1, y: 0, duration: 0.6,  ease: 'power2.out' }, '-=0.25');
+  .to('.hero-stat-row', { opacity: 1, y: 0, duration: 0.6,  ease: 'power2.out' }, '-=0.25')
+  .add(() => startStatCounters());
 
 // ── REVEAL ON SCROLL ──────────────────────────────────────────────────────────
 gsap.utils.toArray('.reveal').forEach(el => {
@@ -59,32 +60,25 @@ gsap.utils.toArray('.timeline-line').forEach(line => {
   });
 });
 
-// ── STAT COUNTERS ─────────────────────────────────────────────────────────────
-gsap.utils.toArray('.stat-number').forEach(el => {
-  const raw     = el.textContent.trim();
-  const num     = parseFloat(raw);
-  const suffix  = raw.replace(/[\d.]/g, '');
-  const isFloat = raw.includes('.');
-  const obj     = { val: 0 };
+// ── STAT COUNTERS (se disparan al terminar la animación del hero) ─────────────
+function startStatCounters() {
+  gsap.utils.toArray('.stat-number').forEach(el => {
+    const raw     = el.textContent.trim();
+    const num     = parseFloat(raw);
+    const suffix  = raw.replace(/[\d.]/g, '');
+    const isFloat = raw.includes('.');
+    const obj     = { val: 0 };
 
-  ScrollTrigger.create({
-    trigger: el,
-    start: 'top 90%',
-    once: true,
-    onEnter() {
-      gsap.to(obj, {
-        val: num,
-        duration: 1.6,
-        ease: 'power2.out',
-        onUpdate() {
-          el.textContent = (isFloat
-            ? obj.val.toFixed(1)
-            : Math.round(obj.val)) + suffix;
-        },
-      });
-    },
+    gsap.to(obj, {
+      val: num,
+      duration: 1.8,
+      ease: 'power2.out',
+      onUpdate() {
+        el.textContent = (isFloat ? obj.val.toFixed(1) : Math.round(obj.val)) + suffix;
+      },
+    });
   });
-});
+}
 
 // ── LANGUAGE SWITCH ───────────────────────────────────────────────────────────
 const resumeImg    = document.getElementById('resume-img');
