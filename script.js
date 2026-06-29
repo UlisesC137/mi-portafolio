@@ -29,16 +29,19 @@ gsap.timeline({ delay: 0.15 })
 
 // ── REVEAL ON SCROLL ──────────────────────────────────────────────────────────
 gsap.utils.toArray('.reveal').forEach(el => {
-  gsap.to(el, {
-    scrollTrigger: {
-      trigger: el,
-      start: 'top 88%',
-    },
-    opacity: 1,
-    y: 0,
-    duration: 0.65,
-    ease: 'power2.out',
-  });
+  gsap.fromTo(el,
+    { opacity: 0, y: 24 },
+    {
+      opacity: 1, y: 0,
+      duration: 0.65,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 88%',
+        once: true,
+      },
+    }
+  );
 });
 
 // ── TIMELINE LINE DRAW ────────────────────────────────────────────────────────
