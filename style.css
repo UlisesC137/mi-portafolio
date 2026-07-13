@@ -854,6 +854,89 @@ html[lang="es"] .lang-en { display: none; }
 
 /* ── REVEAL ANIMATION (GSAP fromTo maneja el estado inicial) ── */
 
+/* ── FEATURED WORK ───────────────────────────────────── */
+.fw-block {
+  max-width: 720px;
+}
+
+.fw-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C4A882;
+  margin-bottom: 20px;
+}
+
+.fw-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.fw-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.fw-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #C4A882;
+  flex-shrink: 0;
+  animation: fw-pulse 2s ease-in-out infinite;
+}
+
+@keyframes fw-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.65); }
+}
+
+.fw-live-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.fw-desc {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 40px;
+}
+
+.fw-ctas {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.fw-link {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.fw-link:hover {
+  color: var(--text);
+  border-color: rgba(255,255,255,0.65);
+}
 
 /* ── RESPONSIVE ─────────────────────────────────────── */
 
@@ -921,6 +1004,11 @@ html, body { overflow-x: hidden; }
 
   /* Footer */
   .footer { padding: 24px 20px; }
+
+  /* Featured Work */
+  .fw-title { letter-spacing: -0.02em; }
+  .fw-desc { font-size: 14px; }
+  .fw-ctas { gap: 24px; }
 }
 
 @media (max-width: 380px) {
