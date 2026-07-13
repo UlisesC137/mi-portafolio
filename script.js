@@ -275,6 +275,39 @@ if (waveSvg) {
   requestAnimationFrame(render);
 })();
 
+// ── FEATURED WORK CAROUSEL ────────────────────────────────────────────────────
+(function () {
+  const slides   = Array.from(document.querySelectorAll('.fw-slide'));
+  const dots     = Array.from(document.querySelectorAll('.fw-dot'));
+  const carousel = document.querySelector('.fw-carousel');
+  if (!slides.length || !carousel) return;
+
+  let current = 0;
+  let timer;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 4000);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { goTo(i); startTimer(); });
+  });
+
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', startTimer);
+
+  startTimer();
+})();
+
 // ── OCEAN RIPPLES ─────────────────────────────────────────────────────────────
 document.addEventListener('pointerdown', (e) => {
   if (e.pointerType === 'touch') return;

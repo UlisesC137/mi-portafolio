@@ -915,11 +915,74 @@ html[lang="es"] .lang-en { display: none; }
   margin-bottom: 40px;
 }
 
+.fw-carousel {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: #0A0A0A;
+  margin-bottom: 0;
+}
+
+.fw-slides {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  background: #0A0A0A;
+}
+
+.fw-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+  display: block;
+}
+
+.fw-slide.active {
+  opacity: 1;
+}
+
+.fw-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 0 12px;
+  border-top: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.fw-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.25s, transform 0.25s;
+}
+
+.fw-dot.active {
+  background: #C4A882;
+  transform: scale(1.5);
+}
+
+.fw-dot:not(.active):hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
 .fw-ctas {
   display: flex;
   gap: 40px;
   align-items: center;
   flex-wrap: wrap;
+  max-width: 720px;
+  margin-top: 40px;
 }
 
 .fw-link {
@@ -1008,7 +1071,8 @@ html, body { overflow-x: hidden; }
   /* Featured Work */
   .fw-title { letter-spacing: -0.02em; }
   .fw-desc { font-size: 14px; }
-  .fw-ctas { gap: 24px; }
+  .fw-ctas { gap: 24px; margin-top: 28px; }
+  .fw-slides { aspect-ratio: 16 / 10; }
 }
 
 @media (max-width: 380px) {
